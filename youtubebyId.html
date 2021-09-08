@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <input type="text" id="take_input" placeholder="enter text" />
+    <button onclick="btnclick()">click</button>
+
+</body>
+
+</html>
+<script>
+    //AIzaSyBN8DlgQcIYPOH9rU00bqQtb_tQqROP-ms
+    async function btnclick() {
+        var a = document.getElementById("take_input").value;
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${a}&type=vieo&key=AIzaSyBN8DlgQcIYPOH9rU00bqQtb_tQqROP-ms`);
+        let data = await res.json();
+        console.log(data);
+
+        for ({ id: { videoId }, } of data.items) {
+            console.log("videoId", videoId);
+        }
+    }
+
+</script>

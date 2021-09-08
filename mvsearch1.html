@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <input type="text" id="user_input" placeholder="enter your movies" />
+    <button onclick="search_movies()">search</button>
+</body>
+
+</html>
+
+<script>
+    async function search_movies() {
+        let a = document.getElementById("user_input").value;
+
+        let res = await fetch(`http://www.omdbapi.com/?t=${a}&apikey=3d841069`);
+
+        let data = await res.json();
+
+        console.log("data", data);
+    }
+
+    search_movies();
+</script>

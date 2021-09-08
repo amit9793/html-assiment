@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    main{
+      background-color: rgb(253, 5, 5);
+      height: 400px;
+      margin-top: 50px;
+      margin-left: 30%;
+      width:300px;
+     
+      
+      color: rgb(253, 6, 6);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    #banner{
+
+      height: 300px;
+      background-color: rgb(158, 146, 212);
+    }
+    #img{
+      height: 200px
+      100px
+
+    }
+    user{
+
+      margin-left: 30%;
+      
+
+
+    }
+    body{
+      margin-top: 50px;
+    }
+    #movies_data{
+      margin-top: 50px;
+    }
+
+
+
+  </style>
+  <body>
+    <user>
+    <input type="text" id="user_input" placeholder="enter your movies" />
+    <button onclick="search_movies()">search</button>
+  </user>
+    <main>
+
+      <div id="banner"></div>
+     <data id="movies_data">
+      <p id="p1">1</p>
+      <p id="p2">1</p>
+    </data> 
+    </main>
+      
+    
+    
+    
+  
+  </body>
+</html>
+
+<script>
+
+var del = document.getElementsByTagName('img');
+    del.removeChild(img);
+
+  async function search_movies() {
+    let a = document.getElementById("user_input").value;
+
+    let res = await fetch(`http://www.omdbapi.com/?t=${a}&apikey=3d841069`);
+
+    let data = await res.json();
+   // console.log(data);
+
+    for (key in data) {
+      if (key == "Title") {
+        var title =( data[key]);
+        //console.log(title);
+      }
+      if (key == "Poster") {
+        var poster = data[key];
+        console.log(data[key]);
+      }
+      if (key == "Released") {
+        var released = data[key];
+       // console.log(released);
+      }
+    }
+
+    var p1 = document.getElementById("p1");
+    p1.textContent = title;
+    
+    var p2 = document.getElementById("p2");
+    p2.textContent = released;
+
+    
+
+    
+   
+   
+
+      var img = document.createElement("img");
+      img.src = poster;
+      
+        
+
+     
+      var ap = document.getElementById("banner");
+      ap.appendChild(img);
+      
+   
+
+ 
+      
+  
+  
+
+
+  }
+  
+</script>

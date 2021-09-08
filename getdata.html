@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>hello massaai</h1>
+    <button onclick="get_click()">click</button>
+  </body>
+</html>
+<script>
+  async function get_click() {
+    let res = await fetch("https://restcountries.eu/rest/v2/all");
+
+    let data = await res.json();
+    // console.log("data",data);
+
+    for (let country of data) {
+      let { name, capital, population } = country;
+      console.log(name, capital, population);
+    }
+  }
+
+  get_click();
+</script>

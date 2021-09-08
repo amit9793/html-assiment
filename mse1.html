@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<style>
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-column-gap: 20px;
+    }
+</style>
+
+<body>
+    <div>hello masai</div>
+    <input id="takeinput" placeholder="ennter input" />
+    <button onclick="submit()">click</button>
+    <div id="desktop"></div>
+
+    <main></main>
+</body>
+
+</html>
+<script>
+    async function submit() {
+        let a = document.getElementById("takeinput").value;
+
+        let res = await fetch(`http://www.omdbapi.com/?t=${a}&apikey=3d841069`);
+        let data = await res.json();
+        console.log("data1", data);
+    }
+
+    submit();
+</script>
