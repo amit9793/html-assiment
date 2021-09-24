@@ -1,17 +1,43 @@
 
-const express = require('express');
-const users = require("./MOCK_DATA (1).json")
+const express = require("express");
+const mongoose = require("mongoose");
+const newuser = require("./amit.json");
+
+const connect = ()=>{
+    return mongoose.connect("mongodb://127.0.0.1:27017/web11")
+}
+
+const userSchema = new mongoose.Schema({
+    id:{type:Number,required:true},
+    first_name:{type:String,required:true},
+    last_name:{type:String,required:false},
+    email:{type:String,required:true},
+    gender:{type:String,required:true},
+})
+const User = mongoose.model("user", userSchema);
+
 const app = express();
+app.use(express.json());
 
-app.get("/",function(req,res){
-    res.send("Welcome to home page")
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/users", async  (req,res) => {
+    const user = await User.create(req.body)
+    return res.send(newuser);
+    
 })
 
-app.get("/user",function(req,res){
-    res.send(users)
-})
-
-app.listen(2345,function(){
-    console.log("listening on port");
-
-})
+app.listen(2345, async function(){
+    await connect();
+    console.log("listening on npiort");
+});
